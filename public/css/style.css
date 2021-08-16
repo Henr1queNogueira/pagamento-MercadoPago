@@ -1,0 +1,10 @@
+/*Classes*/
+.img-carrossel{
+    object-fit: cover;
+    object-position: 0 60%;
+    height: 400px;
+
+}
+.bg-navyBlue{
+    background-color: rgb(37, 37, 82);
+}
