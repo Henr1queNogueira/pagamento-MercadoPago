@@ -7,7 +7,6 @@ const conexao = new Sequelize('payment-mercado-pago', 'root', 'henri201', {
     define: {
         timestamps: false
     }
-    
 });
 
 module.exports = conexao;
