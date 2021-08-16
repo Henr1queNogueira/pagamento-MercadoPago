@@ -11,3 +11,5 @@ conexao.authenticate().then(() => {
 }).catch((erro) => {
     console.log('--DEU RUIM--', erro)
 });
+
+/**git push origin main */
