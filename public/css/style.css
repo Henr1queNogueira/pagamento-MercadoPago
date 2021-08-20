@@ -3,6 +3,11 @@ body {
     padding-top: 75px;
     background-color: #eceff1;
 }
+video{
+	width: 100%;
+	height: auto;
+	
+}
 
 /*Classes*/
 .img-carrossel{
@@ -133,4 +138,10 @@ body {
 
 .sucesso {
   color: #00a073;
+}
+/*IDs*/
+#logo{
+  width: auto;
+height: auto;
+padding: 20px;
 }

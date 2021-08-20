@@ -1,41 +1,132 @@
-<%- include('partials/header'); -%>
-    <body>
-        <%- include('partials/navbar'); -%>
+<%- include('partials/head'); -%>
+<body class="bg-light">
+    <%- include('partials/navbar'); -%>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/img/principal.png" class="d-block w-100 img-carrossel" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5 class="text-xl-left font-weight-bolder" style="-webkit-text-stroke: 0.25px; -webkit-text-stroke-color: lightblue;">Conheça nosso projeto e faça sua doação</h5>
-                    <p class="text-left"><a class="btn btn-lg btn-primary" href="/doar" role="button">Clique aqui</a></p>
+                <div class="carousel-item active">
+                    <img src="/img/principal.png" class="d-block w-100 img-carrossel" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="text-xl-left font-weight-bolder" style="-webkit-text-stroke: 0.25px; -webkit-text-stroke-color: lightblue;">Conheça nosso projeto e faça sua doação</h5>
+                        <p class="text-left"><a class="btn btn-lg btn-primary" href="/doar" role="button">Clique aqui</a></p>
+                    </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/img/img2.png" class="d-block w-100 img-carrossel" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <p class="text-center"><a class="btn btn-lg btn-primary" href="/doar" role="button">Faça sua doação aqui</a></p>
+                <div class="carousel-item">
+                    <img src="/img/img2.png" class="d-block w-100 img-carrossel" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p class="text-center"><a class="btn btn-lg btn-primary" href="/doar" role="button">Faça sua doação aqui</a></p>
+                    </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/img/img3.png" class="d-block w-100 img-carrossel" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <p class="text-right"><a class="btn btn-lg btn-primary" href="/doar" role="button">Colabore</a></p>
+                <div class="carousel-item">
+                    <img src="/img/img3.png" class="d-block w-100 img-carrossel" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <p class="text-right"><a class="btn btn-lg btn-primary" href="/doar" role="button">Colabore</a></p>
+                    </div>
                 </div>
-            </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
             </button>
         </div>
-    </body>
-<%- include('partials/footer'); -%>
+    <main class="container pt-5">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <img id="logo" class="img-responsive img-circle center-block" alt="Casa de apoio" width="400" height="400" src="/img/logos/logo-azul-marinho.png" alt="logo da casa de apoio">
+            </div>
+            <div class="col-md-8 mb-3">
+                <h3 class="section-header">Conheça nosso projeto</h3>
+                <hr>
+                <p class="text-start">A Casa de Apoio Filhos de Hiram é uma entidade sem fins lucrativos, que por meio de doações e recursos, será construída ao lado
+                    do Hospital de Câncer da Amazônia, e oferecerá hospedagem aos pacientes de outros municípios ou estados,
+                    que virão em tratamento para esta unidade de saúde. E disponibilizará um ambiente de repouso com muito
+                    conforto e de forma gratuita àqueles que lutam contra o Câncer.</p>
+                <p><a class="btn btn-outline-primary" href="/sobre">Saiba mais</a> </p>           
+            </div>               
+        </div>
+        <div class="row pt-5">
+            <div class="col-md-6 mb-3">
+              <h4 class="">A Casa de Apoio<hr></h4>
+              <p class="text-start">A Casa de Apoio Filhos de Hiram visa atender pacientes em tratamento no Hospital de Amor Amazônia em Porto Velho.
+                Uma iniciativa da Grande Loja Maçônica do Estado de Rondônia (GLOMARON).</p>
+            </div>
+            <div class="col-md-6 mb-3">
+              <video width="500" controls class="justify-content-center">
+                <source src="/img/casa-apresentacao.mp4" type="video/mp4">
+              </video>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="container bg-light">
+                    <div class="p-4 text-center">
+                    <h2 class="text-dark">Perguntas Frequentes <hr></h2>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6" id="perguntasFrequentes" data-children=".pergunta">
+                            <div class="pergunta py-2">
+                                <a class="text-primary" data-bs-toggle="collapse" href="#pergunta1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    →Quem é o grupo/instituição responsável pelo projeto?
+                                </a>
+                                <div class="collapse" id="pergunta1">
+                                    <p>Francimar Dias Rodrigues (Presidente), Aldino Brasil de Souza (Presidente do Conselho) e Angelo ALmério de Melo Baleeiro (Secretário).</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="pergunta py-2">
+                                <a class="text-primary" data-bs-toggle="collapse" href="#pergunta2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    → Qual é o principal objetivo?
+                                </a>
+                                <div class="collapse" id="pergunta2">
+                                    <p>O projeto visa construir uma casa de apoio que atenderá pacientes e familiares oriundos de outros municípios e Estados, que estarão em tratamento no Hospital de Câncer da Amazônia.</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="pergunta py-2">
+                                <a class="text-primary" data-bs-toggle="collapse" href="#pergunta3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    → Quem é o públivo-alvo?</a>
+                                <div id="pergunta3" class="collapse">
+                                    <p>Pacientes e seus acompanhantes que estão fazendo tratamento no Hospital do Câncer da Amazônia.</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="pergunta py-2">
+                                <a class="text-primary" data-bs-toggle="collapse" href="#pergunta4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    → Qual é o endereço?</a>
+                                <div class="collapse" id="pergunta4">
+                                    <p>Km 17, BR 364, próximo ao Hospital de Câncer da Amazônia.</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="pergunta py-2">
+                                <a class="text-primary" data-bs-toggle="collapse" href="#pergunta5" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    → Como é feita a escolha do quarto?</a>
+                                <div class="collapse" id="pergunta5">
+                                    <p> De acordo com a disponibilidade.</p>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="d-grid gap-2 justify-content-center">
+                    <h5 class="small m-1 text-center">AINDA ESTÁ COM DÚVIDAS?</h5>
+                    <a class="btn btn-lg btn-outline-warning" href="/faleconosco">Entre em Contato</a>
+                </div> 
+            </div>   
+        </div>
+    </main>
+</body>
+    <%- include('partials/footer'); -%>

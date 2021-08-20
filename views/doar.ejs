@@ -1,13 +1,11 @@
-<%- include('partials/header'); -%>
+<%- include('partials/head'); -%>
 <body>
   <%- include('partials/navbar'); -%>
-  <div class="container-fluid">
-    <h2 class="text-center color-special display-5 m-2 p-3">Doação</h2>
-  </div> 
   <div class="container bg-light shadow"> 
     <div class="col-md-12 order-md-1 p-4">
       <form method="POST" action="/doar">
         <div class="row">
+          <h2 class="text-center color-special display-5 m-2 p-3">Doação</h2>
           <label class="col-sm-12 col-form-label"><br>DADOS PESSOAIS<hr></label>
           <div class="col-md-6 mb-3">
             <label>Nome<span class="text-danger"> *</span></label>
