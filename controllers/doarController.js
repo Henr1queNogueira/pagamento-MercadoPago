@@ -38,16 +38,18 @@ module.exports = app => {
             ],
             payer: {
                 name: nomeDoador,
-                email: email
-               
-            },
+                email: email,
+            }, 
+            //como vai aparecer na fatura do cartão
+            statement_descriptor: "DOACAO-CASA-FH",
+
             external_reference : id,
         };
         try {
             var payment = await mercadopago.preferences.create(dados);
             console.log(payment);
             
-                Doar.create({
+              /*  Doar.create({
                      identificador: id,
                      doador: nomeDoador,
                      cpf: cpf,
@@ -58,7 +60,7 @@ module.exports = app => {
                      valorDoacao: valores,
                      dataDoacao: dataDoacao
          
-         });
+         });*/
             return res.redirect(payment.body.init_point);
             
         } catch (error) {
@@ -67,6 +69,28 @@ module.exports = app => {
         }
 
     });
+
+    //Rota de Notificação
+    app.post('/not', (req, res) => {
+        let id = req.query.id;
+
+        setTimeout(() => {
+            var filtro = {
+                "order.id": id
+            }
+            mercadopago.payment.search({
+                qs: filtro
+
+            }).then(data => {
+                console.log(data);
+            }).catch(err => {
+                console.log(err)
+
+            });
+
+        }, 20000)
+        res.send('OK');
+    })
 
 };
 
