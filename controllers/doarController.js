@@ -43,8 +43,12 @@ module.exports = app => {
             notification_url: "http://143.198.190.86/not",
             //como vai aparecer na fatura do cartão
             statement_descriptor: "DOACAO-CASA-FH",
-
-            external_reference : id,
+            back_urls: {
+                "success": "http://143.198.190.86",
+            },
+            auto_return: "approved",
+    
+            external_reference : id
         };
         try {
             var payment = await mercadopago.preferences.create(dados);
@@ -90,7 +94,7 @@ module.exports = app => {
             });
 
         }, 20000)
-        res.send('OK');
+        res.status(200).send('OK');
     })
 
 };
