@@ -18,9 +18,14 @@ video{
 }
 .bg-navyBlue{
     background-color: rgb(37, 37, 82);
+    font-family:courier,arial,helvetica;
+    color: cornsilk;
 }
 .color-special {
     color: darkolivegreen;
+}
+.text-justify {
+  text-align: justify;
 }
 
 /*Validação de inputs*/
