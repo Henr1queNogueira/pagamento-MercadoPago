@@ -40,6 +40,7 @@ module.exports = app => {
                 name: nomeDoador,
                 email: email,
             }, 
+            notification_url: "http://143.198.190.86/not",
             //como vai aparecer na fatura do cartão
             statement_descriptor: "DOACAO-CASA-FH",
 
