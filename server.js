@@ -13,5 +13,5 @@ const app = customExpress();
     console.log('--DEU RUIM--', erro)
 });*/
 
-app.listen(8000, (req, res) => { console.log('Servidor rodando na porta: 8000')});
+app.listen(80, (req, res) => { console.log('Servidor rodando na porta: 8000')});
 /**git push origin main */
