@@ -14,7 +14,7 @@ module.exports = app => {
     });
     
     app.post('/doar', async(req, res) => {
-        const id = "" + Date.now();
+        var id = "" + Date.now();
         const nomeDoador = req.body.nome;
         const cpf = req.body.cpf;
         const cnpj = req.body.cnpj;
@@ -40,11 +40,11 @@ module.exports = app => {
                 name: nomeDoador,
                 email: email,
             }, 
-            notification_url: "http://143.198.190.86/not",
+            //notification_url: "",
             //como vai aparecer na fatura do cartão
             statement_descriptor: "DOACAO-CASA-FH",
             back_urls: {
-                "success": "http://143.198.190.86",
+                "success": "http://localhost:8000/",
             },
             auto_return: "approved",
     
@@ -54,7 +54,7 @@ module.exports = app => {
             var payment = await mercadopago.preferences.create(dados);
             console.log(payment);
             
-              /*  Doar.create({
+                Doar.create({
                      identificador: id,
                      doador: nomeDoador,
                      cpf: cpf,
@@ -64,8 +64,7 @@ module.exports = app => {
                      email: email,
                      valorDoacao: valores,
                      dataDoacao: dataDoacao
-         
-         });*/
+                });
             return res.redirect(payment.body.init_point);
             
         } catch (error) {
@@ -75,27 +74,73 @@ module.exports = app => {
 
     });
 
-    //Rota de Notificação
-    app.post('/not', (req, res) => {
-        let id = req.query.id;
+    app.get("/adm/", function (req, res){
+       Doar.findAll({
+           //raw: true,
+           order:[['id', 'DESC']]
 
-        setTimeout(() => {
-            var filtro = {
-                "order.id": id
-            }
-            mercadopago.payment.search({
-                qs: filtro
-
-            }).then(data => {
-                console.log(data);
-            }).catch(err => {
-                console.log(err)
-
+        }).then(doacoes => {
+            res.render('adm/painelAdm', {
+                doacoes: doacoes
             });
+        });
+        
+    });
+    app.get("/adm/listDoacoes/:id", (req, res) => {
+        let listDoacoes = req.params.id;
+        var offset = 0;
 
-        }, 20000)
-        res.status(200).send('OK');
-    })
+        if(isNaN(listDoacoes)|| listDoacoes == 1){
+            offset = 0;
+        } else{
+            offset = (parseInt(listDoacoes)-1) * 4;
+        }
+
+        Doar.findAndCountAll({
+            limit: 4,
+            offset: offset,
+            order:[['id', 'DESC']]
+        }).then(doacoes => {
+            var next;
+
+            if(offset + 4 >= doacoes.count){
+                next = false;
+            } else {
+                next = true;
+            }
+            var result = {
+                listDoacoes: parseInt(listDoacoes),
+                next: next,
+                doacoes: doacoes
+            }
+            Doar.findAll().then(() => {
+                res.render("adm/listDoacoes", {result: result});
+            });
+            
+        });
+    });
+
+    //Rota de Notificação
+    // app.post('/not', (req, res) => {
+    //     let id = req.query.id;
+
+    //     setTimeout(() => {
+    //         var filtro = {
+    //             "order.id": id
+    //         }
+    //         mercadopago.payment.search({
+    //             qs: filtro
+
+    //         }).then(data => {
+    //             console.log(data);
+    //         }).catch(err => {
+    //             console.log(err)
+
+    //         });
+
+    //     }, 20000)
+    //     res.status(200).send('OK');
+    // })
 
 };
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const consign = require('consign');
+const path = require('path');
 
 module.exports = () => {
     const app = express();

@@ -1,0 +1,65 @@
+<%- include('partials/headAdm'); %>
+  <body>
+    <div class="d-flex">
+      <%- include('partials/sidebarAdm'); %>
+        <div class="w-100">
+          <div id="content">
+              <section class="p-5">
+                <div class="container">
+                  <div class="row">
+                      <div class="col-md-12 mb-3">
+                        <h3>Doações recebidas<hr></h3>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                            <table class="table caption-top table-hover">
+                                <caption>Lista detalhada</caption>
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Identificador</th>
+                                    <th scope="col">Doador</th>
+                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Contato</th>
+                                    <th scope="col">Valor</th>
+                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <% result.doacoes.rows.forEach(doacoes => { %>
+                                    <tr>
+                                        <th scope="row"><%= doacoes.identificador %></th>
+                                        <td><%= doacoes.doador %></td>
+                                        <td><%= doacoes.email %></td>
+                                        <td><%= doacoes.contato %></td>
+                                        <td>R$ <%= doacoes.valorDoacao %></td>    
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination justify-content-end">
+                        <li class="page-item disabled">
+                          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                          <% if(result.next) { %>
+                          <a class="page-link" href="/adm/listDoacoes/<%= result.listDoacoes + 1 %>">Next</a>
+                          <% } %>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </section>
+            <%- include('partials/footerAdm'); %>
+          </div>
+        </div>
+    </div>
+  </body>
