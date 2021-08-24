@@ -74,32 +74,28 @@ module.exports = app => {
 
     });
 
+    //PAG- PAINEL ADM
     app.get("/adm/", function (req, res){
-       Doar.findAll({
-           //raw: true,
-           order:[['id', 'DESC']]
-
-        }).then(doacoes => {
-            res.render('adm/painelAdm', {
-                doacoes: doacoes
-            });
-        });
-        
+        res.render('adm/painelAdm');
     });
-    app.get("/adm/listDoacoes/:id", (req, res) => {
-        let listDoacoes = req.params.id;
+
+    //LISTANDO AS DOAÇÕES RECEBIDAS
+    app.get("/adm/listDoacoes/:num", (req, res) => {
+        let listDoacoes = req.params.num;
         var offset = 0;
 
-        if(isNaN(listDoacoes)|| listDoacoes == 1){
-            offset = 0;
-        } else{
-            offset = (parseInt(listDoacoes)-1) * 4;
-        }
+            if(isNaN(listDoacoes)|| listDoacoes == 1){
+                offset = 0;
+            } else{
+                offset = (parseInt(listDoacoes)-1) * 4;
+            }
 
         Doar.findAndCountAll({
             limit: 4,
             offset: offset,
-            order:[['id', 'DESC']]
+            order:[
+                ['id', 'DESC']
+            ]
         }).then(doacoes => {
             var next;
 

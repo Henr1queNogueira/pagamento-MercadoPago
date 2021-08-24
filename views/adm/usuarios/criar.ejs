@@ -1,0 +1,56 @@
+<%- include('../partials/headAdm'); %>
+  <body>
+    <div class="d-flex">
+      <%- include('../partials/sidebarAdm'); %>
+        <div class="w-100">
+          <div id="content">
+              <section class="p-5">
+                <div class="container">
+                  <div class="row">
+                      <div class="col-md-12 mb-3">
+                        <h3 class="text-center">Cadastro de Usuários<hr></h3>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="card mt-4">
+                      <div class="card-body bg-gradient-light text-dark">
+                        <form action="/usuarios/criar" method="POST">
+                            <div class="row">
+                              <div class="col-md-6 mb-3">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" placeholder="João da Silva" data-tipo="nomeUsuario" required>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                <label>E-mail</label>
+                                <input type="email" class="form-control" id="emailUsuario" name="emailUsuario" placeholder="exemplo@exemplo.com" data-tipo="emailUsuario" required>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4 mb-3">
+                                <label>Data de Nascimento</label>
+                                <input type="date" class="form-control" id="dataNascimentoUsuario" name="dataNascimentoUsuario" data-tipo="dataNascimentoUsuario" required>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <label>Senha</label>
+                                <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" data-tipo="senhaUsuario" placeholder="********" required>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <label>Confirmar senha</label>
+                                <input type="password" class="form-control" id="senha2Usuario" name="senha2Usuario" placeholder="********" required>
+                              </div>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="/adm/usuarios" class="btn btn-secondary me-md-2">Voltar</a>  
+                                <button class="btn btn-success" type="submit">Cadastrar</button>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            <%- include('../partials/footerAdm'); %>
+          </div>
+        </div>
+    </div>
+  </body>

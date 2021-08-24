@@ -37,6 +37,14 @@ const retornarMensagemDeErro = (tipo, validity) => {
         },
         outroValor: {
             customError: "O valor deve ser maior que R$0,00"
+        },
+        //formulário de cadastro
+        nomeUsuario: {
+            valueMissing: "Este campo é obrigatório"
+            
+        },
+        emailUsuario :{
+            valueMissing: "Este campo é obrigatório"
         }
 
     };
