@@ -17,13 +17,36 @@ module.exports = app => {
 
     //SALVAR NO BANCO DE DADOS
     app.post('/usuarios/criar', (req, res) => {
-        //var erros = [];
+        var erros = [];
 
         var nome = req.body.nomeUsuario;
         var email = req.body.emailUsuario;
         var dataNascimento = req.body.dataNascimentoUsuario;
         var senha = req.body.senhaUsuario;
         var senha2 = req.body.senha2Usuario;
+         /*Início da Validação do campos*/
+        if(!nome || typeof nome == undefined || nome == null){
+            erros.push({msg: 'Nome inválido'});
+        }
+        if(!email || typeof email == undefined || email == null){
+            erros.push({msg: 'E-mail inválido'});
+        }
+        if(!dataNascimento || typeof dataNascimento == undefined || dataNascimento == null){
+            erros.push({msg: 'Data de Nascimento inválida'});
+        }
+
+        if(!senha || typeof senha == undefined || senha == null){
+            erros.push({msg: 'Senha inválida'});
+        }
+
+        if(senha != senha2){
+            erros.push({msg: 'As senhas são diferentes'})
+        }
+        /* Fim de validação dos campos do formulario */
+
+        if(erros.length > 0){
+            res.render('adm/usuarios/criar', {erros, nome, email, dataNascimento, senha, senha2});
+        }
 
         Usuario.findOne({ where: {email: email}}).then(usuario => {
                 if(usuario == undefined){
@@ -46,36 +69,50 @@ module.exports = app => {
 
     });
 
-        //res.json({nome, email, dataNascimento, senha, senha2});
+//EDITAR USUÁRIO
+app.get('/adm/usuarios/editar/:id', (req, res) => {
+    var id = req.params.id;
+    //var moment=require('moment');
+    //verificar se o id é um numero
+    if(isNaN(id)){
+        res.redirect('/adm/usuarios');
+    }
+    Usuario.findByPk(id).then(usuario => {
+        if(usuario != undefined){
+            res.render('adm/usuarios/editar', {usuario: usuario});
+        }else {
+            res.redirect('/adm/usuarios');
+        }
+    }).catch(erro => {
+        res.send(erro);
+        //res.redirect('/admin/usuarios');
+    });
 
-    /*Início da Validação do campos
-        if(!nome || typeof nome == undefined || nome == null){
-            erros.push({msg: 'Nome inválido'});
-        }
-        if(!email || typeof email == undefined || email == null){
-            erros.push({msg: 'E-mail inválido'});
-        }
-        if(!dataNascimento || typeof dataNascimento == undefined || dataNascimento == null){
-            erros.push({msg: 'Data de Nascimento inválida'});
-        }
+});
 
-        if(!senha || typeof senha == undefined || senha == null){
-            erros.push({msg: 'Senha inválida'});
-        }
+/* Rota para salvar a edição*/
+app.post('/adm/usuarios/atualizar', (req, res) => {
+    var id = req.body.id;
+    var nome = req.body.nomeUsuario;
+    var email = req.body.emailUsuario;
+    var dataNascimento = req.body.dataNascimentoUsuario;
 
-        if(senha != senha2){
-            erros.push({msg: 'As senhas são diferentes'})
+    Usuario.update({nome: nome, email: email, dataNascimento: dataNascimento}, {
+        where: {
+            id: Number(id)
+            
         }
-    /* Fim de validação dos campos do formulario 
-
-        if(erros.length > 0){
-            res.render('admin/usuarios/new', {erros, nome, email, dataNascimento, senha, senha2});
-        } */
+    }).then(() => {
+        res.redirect('/adm/usuarios');
+    }).catch(err => {
+        res.send('deu ruim: '+err)
+    });
+    
+});  
 
 /*Rota para deletar usuários */
 app.post('/usuarios/delete', (req, res) => {
     var id = req.body.id;
-
     //verficando se o id é válido, diferente de nulo
      //verficar se o valor é número ou não. 
     if(id != undefined || !isNaN(id)){

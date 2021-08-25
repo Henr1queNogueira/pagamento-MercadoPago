@@ -29,7 +29,7 @@
                           <td><%= usuarios.nome %></td>
                           <td><%= usuarios.email %></td>
                           <td>
-                            <a href="/admin/usuarios/editar/<%= usuarios.id %>" class="btn btn-warning">Editar</a>
+                            <a href="/adm/usuarios/editar/<%= usuarios.id %>" class="btn btn-warning">Editar</a>
                             <form method="POST" action="/usuarios/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
                               <input type="hidden" name="id" value="<%= usuarios.id %>">
                               <button class="btn btn-danger">Excluir</button>

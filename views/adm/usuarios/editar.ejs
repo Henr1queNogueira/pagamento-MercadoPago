@@ -1,0 +1,53 @@
+<%- include('../partials/headAdm'); %>
+  <body>
+    <div class="d-flex">
+      <%- include('../partials/sidebarAdm'); %>
+        <div class="w-100">
+          <div id="content">
+              <section class="p-5">
+                <div class="container">
+                  <div class="row">
+                      <div class="col-md-12 mb-3">
+                        <h3 class="text-center">Editar Dados de Usuário<hr></h3>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="card mt-4">
+                      <div class="card-body bg-gradient-light text-dark">
+                        <form method="POST" action="/adm/usuarios/atualizar">
+                          <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <input type="hidden" name="id" value="<%= usuario.id %>">
+                            </div>
+                          </div>
+                            <div class="row">
+                              <div class="col-md-4 mb-3">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" data-tipo="nome" value="<%= usuario.nome %>"  required>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <label>E-mail</label>
+                                <input type="email" class="form-control" id="emailUsuario" name="emailUsuario" value="<%= usuario.email %>" data-tipo="email" required>
+                              </div>
+                              <div class="col-md-4 mb-3">
+                                <label>Data de Nascimento</label>
+                                <input type="date" class="form-control" id="dataNascimentoUsuario" name="dataNascimentoUsuario" value="<%= usuario.dataNascimento %>" data-tipo="dataNascimento" required>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="/adm/usuarios" class="btn btn-secondary me-md-2">Voltar</a>  
+                                    <button class="btn btn-success" type="submit">Atualizar</button>
+                                </div>
+                            </div>    
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            <%- include('../partials/footerAdm'); %>
+          </div>
+        </div>
+    </div>
+  </body>

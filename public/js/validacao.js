@@ -26,7 +26,6 @@ const retornarMensagemDeErro = (tipo, validity) => {
         email: {
             valueMissing: "Este campo é obrigatório",
             typeMismatch: "Este e-mail não é válido"
-
         },
         contato: {
             valueMissing: "Este campo é obrigatório"
@@ -38,15 +37,18 @@ const retornarMensagemDeErro = (tipo, validity) => {
         outroValor: {
             customError: "O valor deve ser maior que R$0,00"
         },
-        //formulário de cadastro
-        nomeUsuario: {
+        dataNascimento: {
+            valueMissing: "Este campo é obrigatório",
+            customError: 'Você deve ser maior que 18 anos para se cadastrar.'
+        },
+        senha: {
+            valueMissing: "Este campo é obrigatório"
+        },
+        confirmarSenha: {
             valueMissing: "Este campo é obrigatório"
             
-        },
-        emailUsuario :{
-            valueMissing: "Este campo é obrigatório"
         }
-
+      
     };
     tiposDeErro.forEach(erro => {
         if(validity[erro]){
@@ -70,7 +72,8 @@ export const validarInput = (input, adicionarErro = true) => {
     const tipo = input.dataset.tipo;
     const validadoresEspecificos = {
        cpf: input => validacaoCPF(input),
-       outroValor: input => validacaoValor(input)
+       outroValor: input => validacaoValor(input),
+       dataNascimento:input => validaDataNascimento(input)
    };
 
    if(validadoresEspecificos[tipo]){
@@ -89,5 +92,27 @@ export const validarInput = (input, adicionarErro = true) => {
         input.classList.remove(classeInputErro);
 
    }
+
+   // Inicio- Validando data de Nascimento
+    function validaDataNascimento(input) {
+        const dataRecebida = new Date(input.value)
+        let mensagem = ''
+
+        if(!maiorQue18(dataRecebida)) {
+            mensagem = 'Você deve ser maior que 18 anos para se cadastrar.'
+        }
+
+        input.setCustomValidity(mensagem);
+    }
+
+    function maiorQue18(data) {
+        const dataAtual = new Date();
+        const dataMais18 = new Date(data.getUTCFullYear() + 18, data.getUTCMonth(), data.getUTCDate());
+
+        return dataMais18 <= dataAtual
+    }
+    // Fim- Validando data de Nascimento
+
+
 
 }

@@ -15,28 +15,39 @@
                     <div class="card mt-4">
                       <div class="card-body bg-gradient-light text-dark">
                         <form action="/usuarios/criar" method="POST">
+                          <div class="row">
+                            <div class="col-md-12 mb-3">
+                              <% if(typeof erros != 'undefined'){ %>
+                                <% erros.forEach(function(error) { %>
+                                    <div class="alert alert-primary" role="alert">
+                                        <%= error.msg %>
+                                    </div>
+                                <% }); %>
+                              <% } %>
+                            </div>
+                          </div>
                             <div class="row">
                               <div class="col-md-6 mb-3">
                                 <label>Nome</label>
-                                <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" placeholder="João da Silva" data-tipo="nomeUsuario" required>
+                                <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" placeholder="João da Silva" data-tipo="nome" required>
                               </div>
                               <div class="col-md-6 mb-3">
                                 <label>E-mail</label>
-                                <input type="email" class="form-control" id="emailUsuario" name="emailUsuario" placeholder="exemplo@exemplo.com" data-tipo="emailUsuario" required>
+                                <input type="email" class="form-control" id="emailUsuario" name="emailUsuario" placeholder="exemplo@exemplo.com" data-tipo="email" required>
                               </div>
                             </div>
                             <div class="row">
                               <div class="col-md-4 mb-3">
                                 <label>Data de Nascimento</label>
-                                <input type="date" class="form-control" id="dataNascimentoUsuario" name="dataNascimentoUsuario" data-tipo="dataNascimentoUsuario" required>
+                                <input type="date" class="form-control" id="dataNascimentoUsuario" name="dataNascimentoUsuario" data-tipo="dataNascimento" required>
                               </div>
                               <div class="col-md-4 mb-3">
                                 <label>Senha</label>
-                                <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" data-tipo="senhaUsuario" placeholder="********" required>
+                                <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" data-tipo="senha" placeholder="********" required>
                               </div>
                               <div class="col-md-4 mb-3">
                                 <label>Confirmar senha</label>
-                                <input type="password" class="form-control" id="senha2Usuario" name="senha2Usuario" placeholder="********" required>
+                                <input type="password" class="form-control" id="senha2Usuario" name="senha2Usuario" data-tipo="confirmarSenha" placeholder="********" required>
                               </div>
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
