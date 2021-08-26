@@ -1,6 +1,7 @@
 const mercadopago = require('mercadopago');
 const moment = require('moment');
 const Doar = require('../models/Doar');
+const adminAuth = require('../config/adminAuth');
 
 module.exports = app => {
     //CONFIG DO MERCADO PAGO
@@ -75,12 +76,12 @@ module.exports = app => {
     });
 
     //PAG- PAINEL ADM
-    app.get("/adm/", function (req, res){
+    app.get("/adm/", adminAuth, (req, res) =>{
         res.render('adm/painelAdm');
     });
 
     //LISTANDO AS DOAÇÕES RECEBIDAS
-    app.get("/adm/listDoacoes/:num", (req, res) => {
+    app.get("/adm/listDoacoes/:num", adminAuth, (req, res) => {
         let listDoacoes = req.params.num;
         var offset = 0;
 

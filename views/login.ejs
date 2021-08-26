@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa-Filhos de Hiram</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/styleLogin.css">
+</head>
+
+  <body class="text-center">
+    <main class="form-signin">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <div class="alert alert-danger small">
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <form class="card" action="/autenticar" method="POST">
+                    <div class="justify-content-center m-3">
+                        <img class="mb-3" src="/img/logos/logo-azul-marinho.png" alt="" width="80" height="80">
+                    </div>
+                        <h3 class="h5 mb-3 fw-normal">Painel Administrativo</h3>
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+                        <label for="floatingInput">E-mail</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="floatingPassword" name="senha" placeholder="********">
+                        <label for="floatingPassword">Senha</label>
+                    </div>
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Lembrar-me
+                        </label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+                        <p class="mt-5 mb-3 text-muted">Casa-FH&copy;2021</p>
+                </form>
+            </div>
+        </div>
+    </main>
+  </body>
+</html>

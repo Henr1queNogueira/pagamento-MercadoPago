@@ -1,16 +1,18 @@
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcryptjs');
+const adminAuth = require('../config/adminAuth');
 
 module.exports = app => {
     //Pag- LISTAGEM DE USUÁRIOS
-    app.get('/adm/usuarios', (req, res) => {
+    app.get('/adm/usuarios',adminAuth, (req, res) => {
+
         Usuario.findAll().then(usuarios => {
             res.status(200).render('adm/usuarios/usuarios', {usuarios:usuarios});
         });
     });
     
     //PAG- CRIAR USUÁRIO
-    app.get('/adm/usuarios/criar', (req, res) => {
+    app.get('/adm/usuarios/criar', adminAuth, (req, res) => {
         res.status(200).render("adm/usuarios/criar");
 
     });
@@ -69,65 +71,65 @@ module.exports = app => {
 
     });
 
-//EDITAR USUÁRIO
-app.get('/adm/usuarios/editar/:id', (req, res) => {
-    var id = req.params.id;
-    //var moment=require('moment');
-    //verificar se o id é um numero
-    if(isNaN(id)){
-        res.redirect('/adm/usuarios');
-    }
-    Usuario.findByPk(id).then(usuario => {
-        if(usuario != undefined){
-            res.render('adm/usuarios/editar', {usuario: usuario});
-        }else {
+    //EDITAR USUÁRIO
+    app.get('/adm/usuarios/editar/:id',adminAuth, (req, res) => {
+        var id = req.params.id;
+        //var moment=require('moment');
+        //verificar se o id é um numero
+        if(isNaN(id)){
             res.redirect('/adm/usuarios');
         }
-    }).catch(erro => {
-        res.send(erro);
-        //res.redirect('/admin/usuarios');
-    });
-
-});
-
-/* Rota para salvar a edição*/
-app.post('/adm/usuarios/atualizar', (req, res) => {
-    var id = req.body.id;
-    var nome = req.body.nomeUsuario;
-    var email = req.body.emailUsuario;
-    var dataNascimento = req.body.dataNascimentoUsuario;
-
-    Usuario.update({nome: nome, email: email, dataNascimento: dataNascimento}, {
-        where: {
-            id: Number(id)
-            
-        }
-    }).then(() => {
-        res.redirect('/adm/usuarios');
-    }).catch(err => {
-        res.send('deu ruim: '+err)
-    });
-    
-});  
-
-/*Rota para deletar usuários */
-app.post('/usuarios/delete', (req, res) => {
-    var id = req.body.id;
-    //verficando se o id é válido, diferente de nulo
-     //verficar se o valor é número ou não. 
-    if(id != undefined || !isNaN(id)){
-        Usuario.destroy({
-            where: {
-                id:id
+        Usuario.findByPk(id).then(usuario => {
+            if(usuario != undefined){
+                res.render('adm/usuarios/editar', {usuario: usuario});
+            }else {
+                res.redirect('/adm/usuarios');
             }
-        }).then(() =>{
-            res.redirect('/adm/usuarios');
+        }).catch(erro => {
+            res.send(erro);
+            //res.redirect('/admin/usuarios');
         });
 
-    }else{
-        res.redirect('/adm/usuarios');
-    }
-});
+    });
+
+    /* Rota para salvar a edição*/
+    app.post('/adm/usuarios/atualizar', (req, res) => {
+        var id = req.body.id;
+        var nome = req.body.nomeUsuario;
+        var email = req.body.emailUsuario;
+        var dataNascimento = req.body.dataNascimentoUsuario;
+
+        Usuario.update({nome: nome, email: email, dataNascimento: dataNascimento}, {
+            where: {
+                id: Number(id)
+                
+            }
+        }).then(() => {
+            res.redirect('/adm/usuarios');
+        }).catch(err => {
+            res.send('deu ruim: '+err)
+        });
+        
+    });  
+
+    /*Rota para deletar usuários */
+    app.post('/usuarios/delete', (req, res) => {
+        var id = req.body.id;
+        //verficando se o id é válido, diferente de nulo
+        //verficar se o valor é número ou não. 
+        if(id != undefined || !isNaN(id)){
+            Usuario.destroy({
+                where: {
+                    id:id
+                }
+            }).then(() =>{
+                res.redirect('/adm/usuarios');
+            });
+
+        }else{
+            res.redirect('/adm/usuarios');
+        }
+    });
        
 
    
