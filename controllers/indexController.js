@@ -9,18 +9,26 @@ const bcrypt = require('bcryptjs');
 
         //TELA DE LOGIN
         app.get('/login', (req, res) => {
-            res.status(200).render('login');
+            var msgError = req.flash("msgError");
+            msgError = (msgError == undefined || msgError.length == 0) ? undefined : msgError;
+
+            var senhaError = req.flash("senhaError");
+            senhaError = (senhaError == undefined || senhaError.length == 0) ? undefined: senhaError;
+
+            res.status(200).render('login', {msgError, senhaError});
         });
 
         app.post('/autenticar', (req, res) => {
             var email = req.body.email;
             var senha = req.body.senha;
-            
+
+            var msgError = "Usuário não encontrado";
+            var senhaError = "Senha incorreta";
+
+
             Usuario.findOne({where: {email: email}}).then(usuario => {
                 if(usuario != undefined){ //se o email existir, valida senha
                     var correct = bcrypt.compareSync(senha, usuario.senha);
-
-                    var msgErro = "Dados incorretos";
 
                     if(correct){
                         req.session.usuario = {
@@ -29,11 +37,13 @@ const bcrypt = require('bcryptjs');
                         }
                         res.redirect('/adm/');
                     }else{
-                        res.render('/login', {msgErro: msgErro});
+                        req.flash("senhaError", senhaError);
+                        res.redirect('/login');
                     }
 
                 } else {
-                    res.redirect('/login', {msgErro: msgErro});
+                    req.flash("msgError", msgError);
+                    res.redirect('/login');
                 }
             });
         });

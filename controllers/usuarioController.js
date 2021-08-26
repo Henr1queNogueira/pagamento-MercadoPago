@@ -74,8 +74,6 @@ module.exports = app => {
     //EDITAR USUÁRIO
     app.get('/adm/usuarios/editar/:id',adminAuth, (req, res) => {
         var id = req.params.id;
-        //var moment=require('moment');
-        //verificar se o id é um numero
         if(isNaN(id)){
             res.redirect('/adm/usuarios');
         }

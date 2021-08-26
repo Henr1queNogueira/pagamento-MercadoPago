@@ -2,12 +2,14 @@ const express = require('express');
 const consign = require('consign');
 const session = require('express-session');
 const flash = require('express-flash');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 
 module.exports = () => {
     const app = express();
 
     //Sessões com Express
+    app.use(cookieParser("gfhdiahgifd"));
     app.use(session({
         secret: "mamacitafalavagabundosenta",
         resave: false,
