@@ -5,6 +5,17 @@
     <div class="col-md-12 order-md-1 p-4">
       <form method="POST" action="/doar">
         <div class="row">
+          <div class="col-md-12 mb-3">
+            <% if(typeof erros != 'undefined'){ %>
+              <% erros.forEach(function(error) { %>
+                  <div class="alert alert-danger" role="alert">
+                      <%= error.msg %>
+                  </div>
+              <% }); %>
+            <% } %>
+          </div>
+        </div>
+        <div class="row">
           <h2 class="text-center color-special display-5 m-2 p-3">Doação</h2>
           <label class="col-sm-12 col-form-label"><br>DADOS PESSOAIS<hr></label>
           <div class="col-md-6 mb-3">
@@ -31,31 +42,31 @@
           </div>
           <div class="col-md-2 mb-3">
             <label>Contato <span class="text-danger"> *</span></label>
-            <input type="text" class="form-control form-control-sm" id="contato" name="contato" data-tipo="contato" placeholder="(DDD)1111-1111" required>
+            <input type="text" class="form-control form-control-sm" id="contato" name="contato" data-tipo="contato" required>
           </div>
         </div>
         <div class="row">
           <label class="col-sm-12">SUA DOAÇÃO<hr></label>
-          <div class="col-md-12 mb-6">
+          <div class="col-md-12 mb-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="valor" id="valor1" value="10">
-                <label class="form-check-label"> Doação de R$ 10,00
+                <input class="form-check-input" type="radio" name="valor" id="valor1" value="10" onclick="teste(0);">
+                <label class="form-check-label" for="valor1"> Doação de R$ 10,00
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="valor" id="valor2" value="20">
-                <label class="form-check-label">Doação de R$ 20,00
+                <input class="form-check-input" type="radio" name="valor" id="valor2" value="20" onclick="teste(0);">
+                <label class="form-check-label" for="valor2">Doação de R$ 20,00
               </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="valor" id="valor3" value="30">
-                  <label class="form-check-label">Doação de R$ 30,00
+                  <input class="form-check-input" type="radio" name="valor" id="valor3" value="30" onclick="teste(0);">
+                  <label class="form-check-label"for="valor3">Doação de R$ 30,00
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="valor" id="valor4" value="50">
-                  <label class="form-check-label">Doação de R$ 50,00
+                  <input class="form-check-input" type="radio" name="valor" id="valor4" value="50" onclick="teste(0);">
+                  <label class="form-check-label"for="valor4">Doação de R$ 50,00
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="valor5">
-                  <input class="form-control form-control-sm" type="text" name="valor" id="valor5" data-tipo="outroValor" value="" placeholder="Outro valor?">
+                  <input class="form-check-input" type="radio" name="valor" id="valor5" value="0" onclick="teste(1);">
+                  <label for="valor5"><input class="form-control form-control-sm" type="number" step='0.01' min='50' name="outroValor" id="outroValor" data-tipo="outroValor" value="" placeholder="Outro Valor?" onclick="teste(1);">      
                 </div>      
           </div>   
         </div>
@@ -70,5 +81,27 @@
   </div>
 </body>
 <%- include('partials/footer'); -%>
+<script>
+
+function teste(param){
+    //param 0 = radio padrão | param 1 = rádio + checkbox
+    if(param==0){
+      //limpar campo outro valor quando o valor5 for selecionado
+      if(document.getElementById("valor5").checked==false){
+        document.getElementById("outroValor").value="";
+        //document.getElementById("outroValor").required=false;
+        //document.getElementById("outroValor").blur();
+        
+      }
+    }
+    if(param==1){
+      //desabilitar o valor 
+      document.getElementById("outroValor").disabled=false;
+      document.getElementById("valor5").checked=true;
+      //document.getElementById("outroValor").required=true;
+    }
+    
+  }
+</script>
 
           

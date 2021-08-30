@@ -14,7 +14,7 @@ module.exports = () => {
         secret: "mamacitafalavagabundosenta",
         resave: false,
         saveUninitialized: true,
-        cookie: { maxAge: 600000}
+        cookie: { maxAge: 600000} //equilavente a 10 minutos
 
     }));
 

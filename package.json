@@ -1,7 +1,7 @@
 {
   "name": "pagamento-mercado-pago",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sistema de Doação integrado API de Pagamentos Mercado Pago utilizando Nodejs",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -15,6 +15,8 @@ module.exports = app => {
     });
     
     app.post('/doar', async(req, res) => {
+        var erros = [];
+
         var id = "" + Date.now();
         const nomeDoador = req.body.nome;
         const cpf = req.body.cpf;
@@ -22,8 +24,42 @@ module.exports = app => {
         const endereco = req.body.endereco;
         const email = req.body.email;
         const contato = req.body.contato; 
-        let valores = req.body.valor;
+
+        let valores = req.body.valor.replace(',', '.');
+        let outroValor=req.body.outroValor.replace(',', '.');
+
+        if(valores==0){//quando o outro valor for selecionado
+            valores=outroValor;
+            //valores=trim(valores);
+        }
         valores = parseFloat(valores);
+        
+        if(!nomeDoador || typeof nomeDoador == undefined || nomeDoador == null){
+            erros.push({msg: 'Preecha o campo de nome'});
+        }
+
+        if(!endereco || typeof endereco == undefined || endereco == null){
+            erros.push({msg: 'Preencha o campo de endereço'});
+        }
+
+        if(!email || typeof email == undefined || email == null){
+            erros.push({msg: 'E-mail inválido'});
+        }
+
+        if(!contato || typeof contato == undefined || contato == null){
+            erros.push({msg: 'Preencha o campo de contato'});
+        }
+
+
+        if(valores === "" || typeof valores == undefined || valores == null || valores == 0){
+            erros.push({msg: 'Selecione um valor'});
+        }
+
+        /* Fim de validação dos campos do formulario */
+
+        if(erros.length > 0){
+            res.render('doar', {erros, nomeDoador, endereco, email, contato, valores});
+        }
 
         let dataDoacao = new Date();
 
@@ -41,7 +77,6 @@ module.exports = app => {
                 name: nomeDoador,
                 email: email,
             }, 
-            //notification_url: "",
             //como vai aparecer na fatura do cartão
             statement_descriptor: "DOACAO-CASA-FH",
             back_urls: {
@@ -117,27 +152,4 @@ module.exports = app => {
         });
     });
 
-    //Rota de Notificação
-    // app.post('/not', (req, res) => {
-    //     let id = req.query.id;
-
-    //     setTimeout(() => {
-    //         var filtro = {
-    //             "order.id": id
-    //         }
-    //         mercadopago.payment.search({
-    //             qs: filtro
-
-    //         }).then(data => {
-    //             console.log(data);
-    //         }).catch(err => {
-    //             console.log(err)
-
-    //         });
-
-    //     }, 20000)
-    //     res.status(200).send('OK');
-    // })
-
 };
-

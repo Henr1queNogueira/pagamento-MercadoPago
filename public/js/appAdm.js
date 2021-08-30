@@ -9,3 +9,21 @@ function confirmDelete(event, form){
     }
   
 };
+
+//Função da Página de Doar
+function teste(param){
+    //param 0 = radio padrão | param 1 = rádio + checkbox
+    if(param==0){
+      //limpar campo outro valor quando o valor5 for selecionado
+      if(document.getElementById("valor5").checked==false){
+        document.getElementById("outroValor").value="";
+        
+      }
+    }
+    if(param==1){
+      //desabilitar o valor 
+      document.getElementById("outroValor").disabled=false;
+      document.getElementById("valor5").checked=true;
+    }
+    
+  }
