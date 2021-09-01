@@ -20,7 +20,7 @@
           <label class="col-sm-12 col-form-label"><br>DADOS PESSOAIS<hr></label>
           <div class="col-md-6 mb-3">
             <label>Nome<span class="text-danger"> *</span></label>
-            <input type="text" class="form-control form-control-sm" name="nome" id="nome" data-tipo="nome" required>
+            <input type="text" class="form-control form-control-sm" name="nome" id="nome" data-tipo="nome" placeholder="Peridot da Silva" required>
           </div>
           <div class="col-md-3 mb-3">
             <label>CPF</label>
@@ -34,15 +34,15 @@
         <div class="row">
           <div class="col-md-6 mb-6">
             <label>Endereço<span class="text-danger"> *</span></label>
-            <input type="text" class="form-control form-control-sm" id="endereco" name="endereco" data-tipo="endereco" required>
+            <input type="text" class="form-control form-control-sm" id="endereco" name="endereco" data-tipo="endereco" placeholder="Rua Galdino Moreira, 3675 bairro: Cidade Nova" required>
           </div>
           <div class="col-md-4 mb-3">
             <label>E-mail <span class="text-danger"> *</span></label>
-            <input type="email" class="form-control form-control-sm" id="email" name="email" data-tipo="email" required>
+            <input type="email" class="form-control form-control-sm" id="email" name="email" data-tipo="email" placeholder="exemplo@email.com" required>
           </div>
           <div class="col-md-2 mb-3">
             <label>Contato <span class="text-danger"> *</span></label>
-            <input type="text" class="form-control form-control-sm" id="contato" name="contato" data-tipo="contato" required>
+            <input type="text" class="form-control form-control-sm" id="contato" name="contato" data-tipo="contato" placeholder="(11) 1111-3322" required>
           </div>
         </div>
         <div class="row">
@@ -81,27 +81,6 @@
   </div>
 </body>
 <%- include('partials/footer'); -%>
-<script>
 
-function teste(param){
-    //param 0 = radio padrão | param 1 = rádio + checkbox
-    if(param==0){
-      //limpar campo outro valor quando o valor5 for selecionado
-      if(document.getElementById("valor5").checked==false){
-        document.getElementById("outroValor").value="";
-        //document.getElementById("outroValor").required=false;
-        //document.getElementById("outroValor").blur();
-        
-      }
-    }
-    if(param==1){
-      //desabilitar o valor 
-      document.getElementById("outroValor").disabled=false;
-      document.getElementById("valor5").checked=true;
-      //document.getElementById("outroValor").required=true;
-    }
-    
-  }
-</script>
 
           
